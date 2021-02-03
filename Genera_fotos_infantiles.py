@@ -1,7 +1,7 @@
 # Se importa la libreria para detectar archivos, crear carpetas etc.
 from os import scandir, getcwd, path, mkdir
 # Se importa la libreria mas importante, OpenCV2 es con la que procesaremos las imagenes
-import cv2 as cv2
+import cv2
 # Se importa la Numpy para analisar patrones de imagenes
 import numpy as np 
 # Se manda a llamar la libreria para generar la interfaz
