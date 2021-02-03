@@ -9,3 +9,4 @@ Este proyecto usa la deteción de rostros en cascada que tiene CV2 para identifi
 - pyinstaller
 - Numpy
 
+# 

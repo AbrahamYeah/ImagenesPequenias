@@ -118,7 +118,6 @@ class Fotos:
                             #y luego el area que queremos tomarl
                             print(alto,ancho)
                             print(vx,vy,x,y)
-                            print("THIS")
                             cv2.rectangle(img, ( x - vx , y - vy) , (x+ancho+extrae_cuello , y+alto+extrae_cabello) , (0,0,255) , 3)
                             valor_x = (x - vx) 
                             valor_y = (y - vy)
@@ -128,7 +127,6 @@ class Fotos:
                             rostro = rz(img_rectable, width=945, height=1122)
                             height, widht, canal = rostro.shape 
                             if int(height-1122) < 0:
-                                print("se recalcula")
                                 extrae_cabello = int(round(max(anchos)*1.55))-alto
                                 extrae_cuello= int(round(max(altos)*1.27))-ancho
                                 vx = int(round(x*1.3))-x
@@ -160,7 +158,6 @@ class Fotos:
                             rostro = rz(img_rectable, width=945, height=1122)
                             height, widht, canal = rostro.shape 
                             if int(height-1122) < 0:
-                                print("se recalcula")
                                 extrae_cabello = int(round(max(anchos)*1.55))-alto
                                 extrae_cuello= int(round(max(altos)*1.27))-ancho
                                 vx = int(round(x*1.3))-x
@@ -192,7 +189,6 @@ class Fotos:
                             rostro = rz(img_rectable, width=945, height=1122)
                             height, widht, canal = rostro.shape 
                             if int(height-1122) < 0:
-                                print("se recalcula")
                                 extrae_cabello = int(round(max(anchos)*1.55))-alto
                                 extrae_cuello= int(round(max(altos)*1.27))-ancho
                                 vx = int(round(x*1.3))-x
