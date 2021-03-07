@@ -4,8 +4,6 @@ from os import scandir, getcwd, path, mkdir
 import cv2
 # Se importa la Numpy para analisar patrones de imagenes
 import numpy as np 
-# Se manda a llamar la libreria para generar la interfaz
-import tkinter  as tk
 # Se utiliza para renderizar la imagen de una mejor manera
 from imutils import resize as rz 
 #from imutils import resize as rz 
@@ -18,36 +16,6 @@ class Fotos:
     ruta_img_input = "Img_Input"
     ruta_img_output = "Img_Output"
     
-    def __init__(self):
-        self.instalacion()
-        self.Genera_interfaz()
-
-    def Genera_interfaz(self):
-        ruta_input = self.ruta_img_input
-        ruta_output = self.ruta_img_output
-        root = tk.Tk()
-        root.config(bd=30)  # borde exterior de 15 píxeles, queda mejor
-        root.geometry("400x200+0+0")
-        root.title("Generador de fotos tamaño infantil")
-        # Tres StringVar para manejar los números y el resultado
-        tk.Label(root, text="Ruta de las imagenes a procesar:").pack()
-        textInput = tk.Entry(root)
-        textInput.textvariable=ruta_input
-        textInput.insert(0, self.ruta_img_input)
-        textInput.pack()
-
-        tk.Label(root, text="\nRuta de las imagenes terminadas:").pack()
-        textOutput = tk.Entry(root)
-        textOutput.textvariable=ruta_output
-        textOutput.insert(0, self.ruta_img_output)
-        textOutput.pack()
-
-        tk.Label(root).pack() # Separador
-        tk.Button(root, text="Iniciar", command=lambda : self.actualiza_rutas_boton(textInput.get(),textOutput.get())).pack()
-        root.mainloop() 
-        
-    # Con este metodo, empezamos el procesado de imagenes.
-
     def actualiza_rutas_boton(self,ruta_in=None,ruta_ou=None):
         if ruta_in is not None:
             self.ruta_img_input = ruta_in
@@ -93,8 +61,9 @@ class Fotos:
         nombre_img_arr= imagen.split('.') # Separamos el nombre de la imagen de la extención
         imagen_fin = '{}_RC.PNG'.format(nombre_img_arr[0],nombre_img_arr[1]) # Preparamos el nombre de resultado
         img = cv2.imread('{}\{}'.format(self.ruta_img_input,imagen)) # Se lee la imagen con la ruta especificada
-        imageAux = img.copy() # Copiamos la imagen para poder recortarla despues
-        img_gris = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Se pone la imagen a blanco y negro para identificar mejor el rostro
+        img2 = rz(img, width=1500)
+        imageAux = img2.copy() # Copiamos la imagen para poder recortarla despues
+        img_gris = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # Se pone la imagen a blanco y negro para identificar mejor el rostro
         # Nota: la imagen de ejemplo que hemos utilizado para el tutorial ya está en blanco y negro,
         # por lo que no sería necesario convertirla. Lo he hecho igualmente por si más adelante queréis
         # probar con una imagen en color.
@@ -173,10 +142,10 @@ class Fotos:
                                 img_rectable = imageAux[valor_y:valor_y_a,valor_x:valor_x_a]
                                 rostro = rz(img_rectable, width=945, height=1122)
                         else:
-                            extrae_cabello = int(round(max(anchos)*1.35))-alto
+                            extrae_cabello = int(round(max(anchos)*2.5))-alto
                             extrae_cuello= int(round(max(altos)*1.27))-ancho
                             vx = int(round(x*1.25))-x
-                            vy = int(round(y*1.7))-y
+                            vy = int(round(y*3))-y
                             #y luego el area que queremos tomarl
                             print(alto,ancho)
                             print(vx,vy,x,y)
