@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['interfaz.py'],
+a = Analysis(['index.py'],
              pathex=['C:\\Users\\Abraham\\Documents\\Curso Python\\Genera_Fotos_Infantiles'],
              binaries=[],
              datas=[('./src/*.xml','src')],

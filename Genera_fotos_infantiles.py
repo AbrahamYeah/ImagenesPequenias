@@ -11,8 +11,8 @@ from tkinter import messagebox
 
 import sys
 
-
 class Fotos:
+
     ruta_img_input = "Img_Input"
     ruta_img_output = "Img_Output"
     
